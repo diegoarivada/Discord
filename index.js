@@ -2,9 +2,7 @@ import DiscordJS, { Intents, Message } from 'discord.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
-/*const WolframAlphaAPI = require('wolfram-alpha-api');
-const waApi = WolframAlphaAPI('VG6R9G-6KUTXG7GEX');
-*/
+
 const client = new DiscordJS.Client({
     intents: [
         Intents.FLAGS.GUILDS,
@@ -13,7 +11,7 @@ const client = new DiscordJS.Client({
 })
 
 client.on('ready', () => {
-    console.log('The bot is ready')
+    console.log('The bot is online')
 })
 
 client.on('messageCreate' , (message) => {

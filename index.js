@@ -1,18 +1,17 @@
-import DiscordJS, { Intents, Message, MessageActionRow } from 'discord.js'
-import dotenv from 'dotenv'
-dotenv.config()
+import DiscordJS, { Intents, Message, MessageActionRow } from 'discord.js';
+import dotenv from 'dotenv';
+import initializeClass from './WolframAlpha.js';
+dotenv.config();
 
+const wolf = initializeClass('VG6R9G-6KUTXG7GEX');
 
 const client = new DiscordJS.Client({
-    intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES
-    ]
-})
+	intents: [ Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES ]
+});
 
 client.on('ready', () => {
-    console.log('The bot is online')
-})
+	console.log('The bot is online');
+});
 /*
 Testing purposes
 ({
@@ -54,24 +53,24 @@ if (inMessage == true){
 }
 */
 
-client.on('messageCreate' , (message) => {
-    if (message.content === '!help') {
-        message.reply({
-            content: ' press ping < more in progress> ',
-        })
-    }
-})
+client.on('messageCreate', (message) => {
+	if (message.content === '!help') {
+		message.reply({
+			content: ' press ping < more in progress> '
+		});
+	}
+});
 
-
-
-client.on('messageCreate' , (message) => {
-    if (message.content === 'ping') {
-        message.reply({
-            content: 'pong',
-        })
-    }
-})
+client.on('messageCreate', (message) => {
+	if (message.content === 'ping') {
+		wolf.getShort('2+129').then((value) => {
+			message.reply({
+				content: value
+			});
+		}, console.error);
+	}
+});
 
 client.login(process.env.TOKEN).catch((error) => {
-    console.error(error)
-})
+	console.error(error);
+});
